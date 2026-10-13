@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My audit | AuditTrack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="portal.html"><span class="brand-mark" aria-hidden="true">&#10003;</span>AuditTrack</a>
+      <nav aria-label="Main">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">Menu</button>
+        <ul class="menu" id="main-menu">
+          <li><a href="portal.html" aria-current="page">My audit</a></li>
+          <li><a href="index.html">Sign out</a></li>
+        </ul>
+      </nav>
+      <span class="user">Liza Cruz &middot; Bayanihan Foods Corp.</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-head">
+      <div class="wrap">
+        <p class="ref">ENG-2026-041 &middot; Client portal</p>
+        <h1>Your ISO 22000 audit</h1>
+        <p>Lead auditor: Marco Santos &middot; Report due October 30, 2026</p>
+        <ol class="stages">
+          <li class="done">Planning</li>
+          <li class="now">Fieldwork</li>
+          <li>Reporting</li>
+          <li>Follow-up</li>
+          <li>Closed</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="wrap stack">
+      <section class="card">
+        <h2>Documents we need from you</h2>
+        <!-- script.js updates this progress bar when you upload -->
+        <div class="progress"><span>Uploaded</span><div class="track"><div class="fill" id="doc-bar" style="width:40%"></div></div><b id="doc-count">2/5</b></div>
+        <ul class="list">
+          <li><div class="text"><strong>HACCP Plan 2026</strong><div class="small file-name">HACCP_Plan_2026_v3.pdf</div></div><span class="pill good">Uploaded</span></li>
+          <li><div class="text"><strong>Supplier accreditation list</strong><div class="small file-name">Supplier_list_2026.xlsx</div></div><span class="pill good">Uploaded</span></li>
+          <li class="needed"><div class="text"><strong>Cold storage temperature logs (Jul to Sep)</strong><div class="small file-name">Please upload by Oct 15</div></div><label class="btn small">Upload<input type="file" class="upload"></label></li>
+          <li class="needed"><div class="text"><strong>Pest control service reports</strong><div class="small file-name">Please upload by Oct 18</div></div><label class="btn small">Upload<input type="file" class="upload"></label></li>
+          <li class="needed"><div class="text"><strong>Product recall procedure</strong><div class="small file-name">Please upload by Oct 20</div></div><label class="btn small">Upload<input type="file" class="upload"></label></li>
+        </ul>
+      </section>
+
+      <section class="card stack">
+        <h2 style="margin:0">Findings to fix</h2>
+        <article class="finding high">
+          <div class="top"><span class="ref">FND-041-01 &middot; High risk</span><span class="pill crit status">Open</span></div>
+          <h3>Cold storage temperature logs are incomplete</h3>
+          <p>Freezer 2 has no temperature log for 9 days in September.</p>
+          <div class="action"><b>What you need to do</b>Restore daily logging with a digital data logger. Fix by Oct 25.</div>
+          <!-- script.js (part 7) handles this form -->
+          <form class="proof-form inset">
+            <div><label for="proof-1">How did you fix it?</label><textarea id="proof-1" required placeholder="Describe what you changed."></textarea></div>
+            <div class="btn-row"><label class="btn ghost small">Attach proof<input type="file" class="upload"></label></div>
+            <button class="btn" type="submit">Submit proof of fix</button>
+          </form>
+        </article>
+        <article class="finding medium">
+          <div class="top"><span class="ref">FND-041-02 &middot; Medium risk</span><span class="pill info">Awaiting review</span></div>
+          <h3>Two supplier accreditations expired</h3>
+          <p>You sent proof on Oct 11. Waiting for the auditor to check your fix.</p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> AuditTrack. Every audit, every finding, one place.</p>
+      <p>Pitch Perfect: Information Management System &middot; Arellano University ETEEAP</p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>

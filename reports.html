@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reports | AuditTrack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">&#10003;</span>AuditTrack</a>
+      <nav aria-label="Main">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">Menu</button>
+        <ul class="menu" id="main-menu">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="engagements.html">Engagements</a></li>
+          <li><a href="audit.html">ENG-2026-041</a></li>
+          <li><a href="reports.html" aria-current="page">Reports</a></li>
+          <li><a href="index.html">Sign out</a></li>
+        </ul>
+      </nav>
+      <span class="user">Ana Reyes &middot; Audit Manager</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-head">
+      <div class="wrap">
+        <h1>Reports</h1>
+        <p>Make a status or findings report in one click, built from the audit data.</p>
+      </div>
+    </div>
+
+    <div class="wrap stack">
+      <section class="card">
+        <h2>Generate a report</h2>
+        <form id="report-form">
+          <div class="form-grid">
+            <div>
+              <label for="r-type">Report</label>
+              <select id="r-type"><option>Engagement status</option><option>Findings summary</option></select>
+            </div>
+            <div>
+              <label for="r-eng">Engagement</label>
+              <select id="r-eng"><option>ENG-2026-041 &middot; Bayanihan Foods Corp.</option></select>
+            </div>
+          </div>
+          <div><button class="btn" type="submit">Generate</button></div>
+        </form>
+      </section>
+
+      <!-- Hidden until you press Generate (script.js part 8) -->
+      <section class="card report" id="report" hidden>
+        <div class="card-head">
+          <div>
+            <p class="ref" style="margin:0">ENG-2026-041 &middot; Generated Oct 13, 2026 by Ana Reyes</p>
+            <h2 id="report-title">Engagement status report: Bayanihan Foods Corp.</h2>
+          </div>
+          <div class="btn-row">
+            <button class="btn ghost small export">Export PDF</button>
+            <button class="btn ghost small export">Export Excel</button>
+          </div>
+        </div>
+        <div class="report-nums">
+          <div><span class="muted">Stage</span><b>Fieldwork</b></div>
+          <div><span class="muted">Tasks done</span><b>1/5</b></div>
+          <div><span class="muted">Documents on file</span><b>3/5</b></div>
+          <div><span class="muted">Days to report due</span><b>17</b></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ref</th><th>Finding</th><th>Risk</th><th>Fix by</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="ref">FND-041-01</td><td>Cold storage temperature logs are incomplete</td><td><span class="pill crit">High</span></td><td>Oct 25</td><td><span class="pill crit">Open</span></td></tr>
+              <tr><td class="ref">FND-041-02</td><td>Two supplier accreditations expired</td><td><span class="pill warn">Medium</span></td><td>Oct 20</td><td><span class="pill info">Awaiting review</span></td></tr>
+              <tr><td class="ref">FND-041-03</td><td>Handwashing signs missing</td><td><span class="pill info">Low</span></td><td>Oct 7</td><td><span class="pill good">Closed</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> AuditTrack. Every audit, every finding, one place.</p>
+      <p>Pitch Perfect: Information Management System &middot; Arellano University ETEEAP</p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
