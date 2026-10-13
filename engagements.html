@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engagements | AuditTrack</title>
+  <meta name="description" content="AuditTrack keeps every audit, document, and finding in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- data-page tells script.js which page this is; data-roles says who may open it -->
+<body data-page="engagements" data-roles="Manager Auditor">
+  <!-- script.js fills in the header: menu links, notifications, and the signed-in user -->
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-head">
+      <div class="wrap">
+        <h1>Engagements</h1>
+        <p id="eng-intro">Every audit, from planning to closing. Click a row to open it.</p>
+      </div>
+    </div>
+
+    <div class="wrap stack">
+      <!-- Only the manager sees this form (script.js hides it for auditors) -->
+      <details class="card" id="new-engagement">
+        <summary class="btn">+ New engagement</summary>
+        <form id="new-engagement-form" novalidate>
+          <div class="form-grid">
+            <div><label for="ne-client">Client</label><select id="ne-client" name="client"></select></div>
+            <div><label for="ne-type">Audit type</label>
+              <select id="ne-type" name="type">
+                <option>Financial Audit</option>
+                <option>ISO 9001 Quality</option>
+                <option>ISO 22000 Food Safety</option>
+                <option>Data Privacy Compliance</option>
+                <option>Occupational Safety</option>
+                <option>Tax Compliance</option>
+              </select>
+            </div>
+            <div class="full"><label for="ne-scope">Scope</label><textarea id="ne-scope" name="scope" placeholder="What will this audit cover?"></textarea></div>
+            <div><label for="ne-start">Start date</label><input id="ne-start" name="start" type="date"></div>
+            <div><label for="ne-due">Report due</label><input id="ne-due" name="due" type="date"></div>
+            <div><label for="ne-lead">Lead auditor</label><select id="ne-lead" name="lead"></select></div>
+            <fieldset><legend>Team members</legend><div id="ne-team"></div></fieldset>
+          </div>
+          <p class="form-error" id="ne-error"></p>
+          <div class="btn-row">
+            <button class="btn" type="submit">Create engagement</button>
+            <span class="muted">The team gets notified and 3 starter tasks are added.</span>
+          </div>
+        </form>
+      </details>
+
+      <section class="card">
+        <div class="card-head">
+          <div class="chips" id="stage-chips"></div>
+          <input class="search" id="eng-search" type="search" placeholder="Search client, ref, or type" aria-label="Search engagements">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ref</th><th>Client</th><th>Audit type</th><th>Lead auditor</th><th>Report due</th><th>Stage</th><th class="num">Open findings</th></tr></thead>
+            <tbody id="engagement-rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> AuditTrack. Every audit, every finding, one place.</p>
+      <p>Pitch Perfect: Information Management System &middot; Arellano University ETEEAP</p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- data.js (the database) must load before script.js (the pages) -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

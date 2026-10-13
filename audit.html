@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engagement | AuditTrack</title>
+  <meta name="description" content="AuditTrack keeps every audit, document, and finding in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- data-page tells script.js which page this is; data-roles says who may open it -->
+<body data-page="audit" data-roles="Manager Auditor">
+  <!-- script.js fills in the header: menu links, notifications, and the signed-in user -->
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-head">
+      <div class="wrap">
+        <a class="back" href="engagements.html">&lsaquo; Back to engagements</a>
+        <div class="eng-head">
+          <div>
+            <p class="ref" id="eng-ref"></p>
+            <h1 id="eng-client">Engagement</h1>
+            <p id="eng-meta"></p>
+          </div>
+          <div class="btn-row" id="eng-buttons"></div>
+        </div>
+        <ol class="stages" id="eng-stages"></ol>
+      </div>
+    </div>
+
+    <div class="wrap stack">
+      <!-- Tabs: each button shows the panel with the same name -->
+      <div class="tabs" role="tablist">
+        <button class="tab" data-tab="overview" role="tab">Overview</button>
+        <button class="tab" data-tab="tasks" role="tab">Tasks</button>
+        <button class="tab" data-tab="documents" role="tab">Documents</button>
+        <button class="tab" data-tab="findings" role="tab">Findings</button>
+        <button class="tab" data-tab="activity" role="tab">Activity</button>
+      </div>
+
+      <!-- TAB 1: Overview -->
+      <section class="panel grid-2" id="overview">
+        <div class="card stack">
+          <h2 style="margin:0">Scope</h2>
+          <p style="margin:0" id="eng-scope"></p>
+          <h2 style="margin:.5rem 0 0">Progress</h2>
+          <div id="eng-progress"></div>
+        </div>
+        <div class="card">
+          <h2>People</h2>
+          <ul class="list" id="eng-people"></ul>
+        </div>
+      </section>
+
+      <!-- TAB 2: Tasks -->
+      <section class="card panel" id="tasks">
+        <div class="card-head"><h2>Tasks</h2><span class="muted" id="task-count"></span></div>
+        <details id="add-task">
+          <summary class="btn small">+ Add task</summary>
+          <form id="task-form" class="inset" novalidate>
+            <div class="form-grid">
+              <div class="full"><label for="t-title">Task</label><input id="t-title" name="title" placeholder="e.g. Review sanitation records"></div>
+              <div><label for="t-who">Assign to</label><select id="t-who" name="who"></select></div>
+              <div><label for="t-due">Due date</label><input id="t-due" name="due" type="date"></div>
+            </div>
+            <p class="form-error" id="task-error"></p>
+            <div><button class="btn" type="submit">Add task</button></div>
+          </form>
+        </details>
+        <ul class="list" id="task-list"></ul>
+      </section>
+
+      <!-- TAB 3: Documents -->
+      <section class="card panel" id="documents">
+        <div class="card-head">
+          <h2>Documents</h2>
+          <div class="btn-row" id="doc-buttons">
+            <label class="btn small">Upload evidence<input type="file" id="evidence-upload"></label>
+          </div>
+        </div>
+        <details id="request-doc">
+          <summary class="btn ghost small">Request a document from the client</summary>
+          <form id="request-form" class="inset" novalidate>
+            <div class="form-grid">
+              <div><label for="rq-name">Document needed</label><input id="rq-name" name="name" placeholder="e.g. Calibration certificates"></div>
+              <div><label for="rq-due">Needed by</label><input id="rq-due" name="due" type="date"></div>
+            </div>
+            <p class="form-error" id="request-error"></p>
+            <div><button class="btn" type="submit">Send request</button></div>
+          </form>
+        </details>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Document</th><th>Type</th><th class="num">Version</th><th>Uploaded by</th><th>Date</th><th>Status</th></tr></thead>
+            <tbody id="doc-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 4: Findings -->
+      <section class="card panel" id="findings">
+        <div class="card-head"><h2>Findings</h2></div>
+        <details id="log-finding">
+          <summary class="btn small">+ Log finding</summary>
+          <form id="finding-form" class="inset" novalidate>
+            <div class="form-grid">
+              <div class="full"><label for="f-title">Finding</label><input id="f-title" name="title" placeholder="e.g. Thermometer calibration is overdue"></div>
+              <div class="full"><label for="f-desc">What did you see?</label><textarea id="f-desc" name="desc" placeholder="Describe the issue and where you found it."></textarea></div>
+              <div><label for="f-clause">Standard or clause</label><input id="f-clause" name="clause" placeholder="e.g. ISO 22000 Clause 7.1.5"></div>
+              <div><label for="f-risk">Risk level</label><select id="f-risk" name="risk"><option>High</option><option selected>Medium</option><option>Low</option></select></div>
+              <div class="full"><label for="f-action">Corrective action for the client</label><input id="f-action" name="action" placeholder="What should the client do to fix it?"></div>
+              <div><label for="f-target">Client must fix by</label><input id="f-target" name="target" type="date"></div>
+            </div>
+            <p class="form-error" id="finding-error"></p>
+            <div><button class="btn" type="submit">Log finding</button></div>
+          </form>
+        </details>
+        <div class="stack" id="finding-list"></div>
+      </section>
+
+      <!-- TAB 5: Activity log -->
+      <section class="card panel" id="activity">
+        <div class="card-head"><h2>Activity log</h2><span class="muted">Every change is recorded</span></div>
+        <ul class="list" id="log-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> AuditTrack. Every audit, every finding, one place.</p>
+      <p>Pitch Perfect: Information Management System &middot; Arellano University ETEEAP</p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- data.js (the database) must load before script.js (the pages) -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

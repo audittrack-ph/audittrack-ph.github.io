@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | AuditTrack</title>
+  <meta name="description" content="AuditTrack keeps every audit, document, and finding in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="login" data-roles="">
+  <main class="login">
+    <div class="card login-card">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">&#10003;</span>AuditTrack</a>
+      <div>
+        <h1>Sign in</h1>
+        <p class="muted">Every audit, every finding, one place.</p>
+      </div>
+
+      <form id="login-form" novalidate>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" value="ana.reyes@audittrack.ph" autocomplete="username">
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" value="demo1234" autocomplete="current-password">
+        </div>
+        <p class="form-error" id="login-error"></p>
+        <button class="btn" type="submit">Sign in</button>
+      </form>
+
+      <p class="muted" style="margin:0">Or open a demo account (any password works):</p>
+      <!-- script.js lists the demo accounts here -->
+      <div class="stack-sm" id="demo-accounts"></div>
+
+      <button class="link-btn" id="reset-data" type="button">Reset demo data</button>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

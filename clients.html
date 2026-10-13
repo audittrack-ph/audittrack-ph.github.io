@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clients | AuditTrack</title>
+  <meta name="description" content="AuditTrack keeps every audit, document, and finding in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- data-page tells script.js which page this is; data-roles says who may open it -->
+<body data-page="clients" data-roles="Manager">
+  <!-- script.js fills in the header: menu links, notifications, and the signed-in user -->
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-head">
+      <div class="wrap">
+        <h1>Clients</h1>
+        <p>Companies the firm audits. Adding a client also creates their portal login.</p>
+      </div>
+    </div>
+    <div class="wrap stack">
+      <details class="card">
+        <summary class="btn">+ Add client</summary>
+        <form id="client-form" novalidate>
+          <div class="form-grid">
+            <div><label for="c-name">Company name</label><input id="c-name" name="name" placeholder="e.g. Mabuhay Water Services Inc."></div>
+            <div><label for="c-industry">Industry</label><input id="c-industry" name="industry" placeholder="e.g. Utilities"></div>
+            <div><label for="c-city">City</label><input id="c-city" name="city" placeholder="e.g. Quezon City"></div>
+            <div><label for="c-contact">Contact person</label><input id="c-contact" name="contact" placeholder="e.g. Grace Lim"></div>
+            <div class="full"><label for="c-email">Contact email (used to sign in to the client portal)</label><input id="c-email" name="email" type="email" placeholder="e.g. grace.lim@mabuhaywater.ph"></div>
+          </div>
+          <p class="form-error" id="client-error"></p>
+          <div><button class="btn" type="submit">Add client</button></div>
+        </form>
+      </details>
+      <section class="card">
+        <div class="card-head">
+          <h2>All clients</h2>
+          <input class="search" id="client-search" type="search" placeholder="Search clients" aria-label="Search clients">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Company</th><th>Industry</th><th>City</th><th>Contact person</th><th class="num">Active audits</th><th class="num">Open findings</th></tr></thead>
+            <tbody id="client-rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> AuditTrack. Every audit, every finding, one place.</p>
+      <p>Pitch Perfect: Information Management System &middot; Arellano University ETEEAP</p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- data.js (the database) must load before script.js (the pages) -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

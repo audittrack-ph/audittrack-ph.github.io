@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My audit | AuditTrack</title>
+  <meta name="description" content="AuditTrack keeps every audit, document, and finding in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- data-page tells script.js which page this is; data-roles says who may open it -->
+<body data-page="portal" data-roles="Client">
+  <!-- script.js fills in the header: menu links, notifications, and the signed-in user -->
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-head">
+      <div class="wrap">
+        <h1 id="greeting">My audit</h1>
+        <p id="portal-intro"></p>
+      </div>
+    </div>
+    <!-- script.js builds one section for each of the client's audits -->
+    <div class="wrap stack" id="portal"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> AuditTrack. Every audit, every finding, one place.</p>
+      <p>Pitch Perfect: Information Management System &middot; Arellano University ETEEAP</p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- data.js (the database) must load before script.js (the pages) -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

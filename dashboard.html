@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | AuditTrack</title>
+  <meta name="description" content="AuditTrack keeps every audit, document, and finding in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- data-page tells script.js which page this is; data-roles says who may open it -->
+<body data-page="dashboard" data-roles="Manager">
+  <!-- script.js fills in the header: menu links, notifications, and the signed-in user -->
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-head">
+      <div class="wrap">
+        <h1 id="greeting">Dashboard</h1>
+        <p id="today-line">Here is how every audit is doing today.</p>
+      </div>
+    </div>
+
+    <div class="wrap stack">
+      <div class="stats" id="stats"></div>
+
+      <div class="grid-3">
+        <section class="card"><h2>Audits by stage</h2><div class="bars" id="chart-stage"></div></section>
+        <section class="card"><h2>Open findings by risk</h2><div class="bars" id="chart-risk"></div></section>
+        <section class="card"><h2>Team workload</h2><div class="bars" id="chart-team"></div></section>
+      </div>
+
+      <div class="grid-2">
+        <section class="card">
+          <h2>Upcoming report deadlines</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Engagement</th><th>Client</th><th>Stage</th><th>Due</th></tr></thead>
+              <tbody id="deadline-rows"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card">
+          <h2>Overdue tasks</h2>
+          <ul class="list" id="overdue-list"></ul>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Recent activity</h2>
+        <ul class="list" id="activity-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> AuditTrack. Every audit, every finding, one place.</p>
+      <p>Pitch Perfect: Information Management System &middot; Arellano University ETEEAP</p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- data.js (the database) must load before script.js (the pages) -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
