@@ -9,7 +9,7 @@
 
 const TODAY = "2026-10-13"; // the demo's "today". Change it to move all deadlines.
 const STAGES = ["Planning", "Fieldwork", "Reporting", "Follow-up", "Closed"];
-const STORAGE_KEY = "audittrack-data-v1";
+const STORAGE_KEY = "audittrack-data-v2";
 
 // 1. Starting data (used the first time, and after a reset)
 function seedData() {
@@ -17,18 +17,18 @@ function seedData() {
     nextNumber: 45, // next engagement number, e.g. ENG-2026-045
 
     clients: [
-      { id: "c1", name: "Bayanihan Foods Corp.", industry: "Food manufacturing", city: "Pasig City", contact: "Liza Cruz", email: "liza.cruz@bayanihanfoods.ph" },
+      { id: "c1", name: "Bayanihan Foods Corp.", industry: "Food manufacturing", city: "Pasig City", contact: "Erwin Toco", email: "erwin.toco@bayanihanfoods.ph" },
       { id: "c2", name: "Luzon Metro Logistics Inc.", industry: "Logistics", city: "Taguig City", contact: "Ramon Dizon", email: "ramon.dizon@lmlogistics.ph" },
       { id: "c3", name: "Sampaguita Hotels Group", industry: "Hospitality", city: "Makati City", contact: "Carla Mendoza", email: "carla.mendoza@sampaguitahotels.ph" },
       { id: "c4", name: "PhilAgri Producers Cooperative", industry: "Agriculture", city: "Calamba, Laguna", contact: "Nestor Bautista", email: "nestor.bautista@philagri.coop" }
     ],
 
     users: [
-      { id: "u1", name: "Ana Reyes", role: "Manager", title: "Audit Manager", email: "ana.reyes@audittrack.ph" },
-      { id: "u2", name: "Marco Santos", role: "Auditor", title: "Lead Auditor", email: "marco.santos@audittrack.ph" },
+      { id: "u1", name: "Marilla Ignacio", role: "Manager", title: "Audit Manager", email: "marilla.ignacio@audittrack.ph" },
+      { id: "u2", name: "Gyan Carlo Espinueva", role: "Auditor", title: "Lead Auditor", email: "gyan.espinueva@audittrack.ph" },
       { id: "u3", name: "Joy Villanueva", role: "Auditor", title: "Staff Auditor", email: "joy.villanueva@audittrack.ph" },
       { id: "u4", name: "Paolo Garcia", role: "Auditor", title: "Staff Auditor", email: "paolo.garcia@audittrack.ph" },
-      { id: "u5", name: "Liza Cruz", role: "Client", title: "QA Manager", clientId: "c1", email: "liza.cruz@bayanihanfoods.ph" },
+      { id: "u5", name: "Erwin Toco", role: "Client", title: "QA Manager", clientId: "c1", email: "erwin.toco@bayanihanfoods.ph" },
       { id: "u6", name: "Ramon Dizon", role: "Client", title: "Compliance Head", clientId: "c2", email: "ramon.dizon@lmlogistics.ph" },
       { id: "u7", name: "Carla Mendoza", role: "Client", title: "Finance Director", clientId: "c3", email: "carla.mendoza@sampaguitahotels.ph" },
       { id: "u8", name: "Nestor Bautista", role: "Client", title: "General Manager", clientId: "c4", email: "nestor.bautista@philagri.coop" }
@@ -94,11 +94,11 @@ function seedData() {
     notifications: [
       { id: "n1", userId: "u1", message: "ENG-2026-038 report is due in 3 days.", engId: "e2", read: false },
       { id: "n2", userId: "u1", message: "Paolo Garcia has an overdue task on ENG-2026-033.", engId: "e4", read: false },
-      { id: "n3", userId: "u2", message: "Liza Cruz submitted proof of fix for FND-041-02.", engId: "e1", read: false },
+      { id: "n3", userId: "u2", message: "Erwin Toco submitted proof of fix for FND-041-02.", engId: "e1", read: false },
       { id: "n4", userId: "u2", message: "Joy Villanueva logged finding FND-041-01 (High).", engId: "e1", read: true },
       { id: "n5", userId: "u3", message: "Your task \"Inspect cold storage temperature records\" is overdue.", engId: "e1", read: false },
       { id: "n6", userId: "u5", message: "New finding FND-041-01 needs your action by Oct 25.", engId: "e1", read: false },
-      { id: "n7", userId: "u5", message: "Marco Santos requested 3 documents for your ISO 22000 audit.", engId: "e1", read: true },
+      { id: "n7", userId: "u5", message: "Gyan Carlo Espinueva requested 3 documents for your ISO 22000 audit.", engId: "e1", read: true },
       { id: "n8", userId: "u4", message: "Nestor Bautista submitted proof of fix for FND-033-01.", engId: "e4", read: false }
     ],
 
@@ -109,7 +109,7 @@ function seedData() {
       { id: "l3", engId: "e1", date: "2026-10-09", userId: "u3", text: "Uploaded \"Sanitation walkthrough photos\"" },
       { id: "l4", engId: "e1", date: "2026-10-08", userId: "u3", text: "Verified fix for FND-041-03" },
       { id: "l5", engId: "e1", date: "2026-10-05", userId: "u2", text: "Moved engagement to Fieldwork" },
-      { id: "l6", engId: "e1", date: "2026-09-28", userId: "u1", text: "Created engagement and assigned Marco Santos as lead" },
+      { id: "l6", engId: "e1", date: "2026-09-28", userId: "u1", text: "Created engagement and assigned Gyan Carlo Espinueva as lead" },
       { id: "l7", engId: "e2", date: "2026-10-09", userId: "u2", text: "Uploaded \"Draft audit report\" (v2)" },
       { id: "l8", engId: "e2", date: "2026-10-01", userId: "u2", text: "Moved engagement to Reporting" },
       { id: "l9", engId: "e3", date: "2026-10-08", userId: "u3", text: "Uploaded \"Signed engagement letter\"" },
@@ -182,7 +182,8 @@ function addDays(iso, n) { return new Date(Date.parse(iso) + n * 86400000).toISO
 function safe(text) {
   return String(text ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
-function initials(name) { return name.split(" ").map((w) => w[0]).slice(0, 2).join(""); }
+// First letter of the first and last name, e.g. "Gyan Carlo Espinueva" -> "GE"
+function initials(name) { const w = name.trim().split(" "); return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase(); }
 
 // Colored labels ("pills"). The color depends on the word.
 const PILL_COLOR = {

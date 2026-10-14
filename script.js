@@ -470,15 +470,17 @@ function auditPage() {
   // ----- tabs -----
   let currentTab = (window.location.hash || "#overview").slice(1);
   function showTab(name) {
-    currentTab = document.querySelector("#" + name + ".panel") ? name : "overview";
+    currentTab = document.querySelector("#panel-" + name) ? name : "overview";
     document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.dataset.tab === currentTab));
-    document.querySelectorAll(".panel").forEach((p) => { p.hidden = p.id !== currentTab; });
+    document.querySelectorAll(".panel").forEach((p) => { p.hidden = p.id !== "panel-" + currentTab; });
     history.replaceState(null, "", "#" + currentTab);
   }
   document.querySelector(".tabs").addEventListener("click", (event) => {
     const tab = event.target.closest(".tab");
     if (tab) showTab(tab.dataset.tab);
   });
+  // a link like audit.html?id=e1#findings on this same page switches the tab
+  window.addEventListener("hashchange", () => showTab(window.location.hash.slice(1)));
 
   // fill the "Assign to" dropdown and default dates
   document.querySelector("#t-who").innerHTML = [eng.leadId, ...eng.team].map((uid) => `<option value="${uid}">${safe(getUser(uid).name)}</option>`).join("");
